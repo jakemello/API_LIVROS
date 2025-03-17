@@ -21,7 +21,7 @@ def init_db():
                     titulo TEXT NOT NULL,
                     categoria TEXT NOT NULL,
                     autor TEXT NOT NULL,
-                    imagem_url TEXT NOT NULL
+                    image_url TEXT NOT NULL
                )
            """ 
         )
@@ -36,10 +36,21 @@ def init_db():
         titulo = dados.get("titulo")
         categoria = dados.get("categoria")
         autor = dados.get("autor")
-        imagem_url = dados.get("imagem_url")
+        image_url = dados.get("image_url")
 
-        if not titulo or not categoria or not autor or not imagem_url:
+        if not titulo or not categoria or not autor or not image_url:
             return jsonify({"erro":"Todos os campos são obrigatórios"}),400
+        
+        with sqlite3.connect("database.db") as conn:
+
+            conn.execute(f"""
+            INSERT INTO Livros (titulo, categoria, autor, imagem_url)
+            VALUE ("{titulo}", "{categoria}", "{autor}", "{image_url}")
+            """)
+
+        conn.commit()
+
+        return jsonify({"mensagem": "Livro cadastrado com sucesso"}), 201
 
 # --> É o comando para rodar a nossa aplicação
 # --> Se o arquivo app.py for igual(==) ao arquivo principal da nossa aplicação
