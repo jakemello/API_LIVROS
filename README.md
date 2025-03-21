@@ -94,9 +94,5 @@ Retorna um JSON com todos os livros cadastrados.
 - Flask
 - SQLite
 
-## 📄 Licença
-Este projeto está sob a licença MIT. Sinta-se livre para usá-lo e modificá-lo como desejar.
 
----
-Desenvolvido por **Jake**. 😎
 
