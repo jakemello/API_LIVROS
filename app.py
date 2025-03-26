@@ -5,6 +5,12 @@ import sqlite3
 app = Flask(__name__)
 
 
+@app.route("/")
+def mensagem():
+
+    return "<h1>Incentivar a leitura é a forma mais eficaz de disseminar cultura e valores.</h1>"
+
+
 def init_db():
     # Crie o nosso banco de dados com um arquivo 'databse.db' e conecte a variável conn(connection)
     with sqlite3.connect("database.db") as conn:
@@ -69,8 +75,8 @@ def listar_livros():
             }
             livros_formatados.append(dicionario_livros)
 
-    return jsonify(livros_formatados)       
-            
+    return jsonify(livros_formatados)
+
 
 # --> É o comando para rodar a nossa aplicação
 # --> Se o arquivo app.py for igual(==) ao arquivo principal da nossa aplicação
